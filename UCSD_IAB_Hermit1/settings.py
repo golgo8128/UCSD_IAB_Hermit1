@@ -25,7 +25,7 @@ SECRET_KEY = 'c$@ydho2yxs-!mqmcko=s^8gng)tj2@e@!6=*k!q-gbu1xp#aa'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['crybed2017.pythonanywhere.com']
 
 
 ### UCSD IAB Hermit1 System ###
@@ -153,3 +153,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
+
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

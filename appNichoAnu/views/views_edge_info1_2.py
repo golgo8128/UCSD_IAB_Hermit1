@@ -14,12 +14,13 @@ from django.template import RequestContext, loader
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect #, JsonResponse
 from django.urls import reverse
-from .models import *
-from .modules.to_networkx1_6 import to_networkx_from_rec
+from django.shortcuts import render
+from appNichoAnu.models import *
+from appNichoAnu.modules.to_networkx1_6 import to_networkx_from_rec
 
 from UCSD_IAB_Usefuls.Time.timezone1 import get_tzone
 
-from Graph_Packages.Graph_Draw.DrawNetworkX_simple1_8 \
+from Graph_Packages.Graph_Draw.DrawNetworkX_simple1_9 \
     import DrawNetworkX_simple
 from FileDirPath.mkdir_on_absent import mkdir_on_absent
 from FileDirPath.File_Path1 import rs_filepath_info
@@ -73,7 +74,7 @@ def edge_info(request, edge_id, outer_percent = 300):
         edge_form = NichoEdge_Form(instance = edge)
     
     grf = to_networkx_from_rec(focus_edge = edge)
-    image_file = os.path.join(settings.UCSD_IMM_WORKDIR,
+    image_file = os.path.join(settings.UCSD_IAB_WORKDIR,
                               "Media", "appNichoAnu", "Images",
                               "edges", "%s.png" % edge_id)
     mkdir_on_absent(rs_filepath_info(image_file)[ "foldername" ])
@@ -125,13 +126,14 @@ def edge_info(request, edge_id, outer_percent = 300):
                                       edge.node_tgt.node_vis_id),
             outfile = image_file)
 
-    
-    contxt = RequestContext(request, { "edge"      : edge,
-                                       "edge_form" : edge_form,
-                                       "image_url" : image_url })
-    templt = loader.get_template("appNichoAnu/map_Anurag_edge_info2.html")
-    
-    return HttpResponse(templt.render(contxt)) 
+
+    contxt = { "edge"      : edge,
+               "edge_form" : edge_form,
+               "image_url" : image_url }
+
+    return render(request,
+                  "appNichoAnu/map_Anurag_edge_info2.html",
+                  contxt)
 
 
 

@@ -21,8 +21,8 @@ from django.shortcuts import render
 
 from ipware.ip import get_ip
 
-from .models import *
-from .modules.to_networkx1_6 import to_networkx
+from appNichoAnu.models import *
+from appNichoAnu.modules.to_networkx1_6 import to_networkx
 
 from UCSD_IAB_Usefuls.Time.timezone1 import get_tzone
 

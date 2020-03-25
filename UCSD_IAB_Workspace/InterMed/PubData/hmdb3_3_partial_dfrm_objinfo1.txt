@@ -1,5 +1,5 @@
 [ sfiles ]
-C:\Users\golgo\rs_Webs\rs_WebSystem\WebSys_IAB2\UCSD_IAB_Hermit1\UCSD_IAB_Static\appNichoAnu\PubData\hmdb3_3_dfrm1.tsv
+/Users/rsaito/Sites/rs_WebSystem/WebSys_IAB2/UCSD_IAB_Hermit1/UCSD_IAB_Static/appNichoAnu/PubData/hmdb3_3_dfrm1.tsv
 
 [ versions ]
 Ver major	0.54

@@ -1,10 +1,7 @@
-
-from django.conf.urls import include, url
 from django.urls import path
 
-from . import views, views_node_info1_4, views_edge_info1_2,  \
-    views_add_node1_1, views_add_edge1_1, \
-    views_del_node1_1, views_del_edge1_1
+from .views import views, views_add_edge1_1, views_add_node1_1, views_del_edge1_1, views_del_node1_1, \
+    views_edge_info1_2, views_node_info1_4
 
 app_name = "appNichoAnu"
 

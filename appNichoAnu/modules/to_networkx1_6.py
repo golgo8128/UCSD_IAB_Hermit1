@@ -57,15 +57,13 @@ def to_networkx_from_rec(update = False,
         
         if ogrf.has_edge(str(focus_edge.node_src),
                          str(focus_edge.node_tgt)):
-            ogrf.edge\
-                [ str(focus_edge.node_src) ]\
-                [ str(focus_edge.node_tgt) ][ KEY_EDGE_RELAY_POSS ] = relay_poss
+            ogrf.edges[ str(focus_edge.node_src),
+                        str(focus_edge.node_tgt) ][ KEY_EDGE_RELAY_POSS ] = relay_poss
 
         elif ogrf.has_edge(str(focus_edge.node_tgt),
                            str(focus_edge.node_src)):
-            ogrf.edge\
-                [ str(focus_edge.node_tgt) ]\
-                [ str(focus_edge.node_src) ][ KEY_EDGE_RELAY_POSS ] = relay_poss[::-1]
+            ogrf.edges[ str(focus_edge.node_tgt),
+                        str(focus_edge.node_src) ][ KEY_EDGE_RELAY_POSS ] = relay_poss[::-1]
         
         else:
             raise KeyError("%s not found" % str(focus_edge))

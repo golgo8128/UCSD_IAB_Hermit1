@@ -48,6 +48,7 @@ os.chdir(estim_proj_home)
 # print(os.getcwd())
 coms = (
     [ "python", "./manage.py", "makemigrations" ],
+    [ "python", "./manage.py", "makemigrations", "AccAuth_TZ"],
     [ "python", "./manage.py", "makemigrations", "appNichoAnu" ],
     [ "python", "./manage.py", "migrate" ],
     [ "python", "./manage.py", "migrate", "--database=nichoanu" ],

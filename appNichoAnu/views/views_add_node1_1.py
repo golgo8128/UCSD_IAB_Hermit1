@@ -14,8 +14,8 @@ from django.template import RequestContext, loader
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect #, JsonResponse
 from django.urls import reverse
-from .models import *
-from .modules.to_networkx1_6 import to_networkx_from_rec
+from appNichoAnu.models import *
+from appNichoAnu.modules.to_networkx1_6 import to_networkx_from_rec
 
 from UCSD_IAB_Usefuls.Time.timezone1 import get_tzone
 

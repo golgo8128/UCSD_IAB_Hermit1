@@ -14,12 +14,13 @@ from django.template import RequestContext, loader
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect #, JsonResponse
 from django.urls import reverse
-from .models import *
-from .modules.to_networkx1_6 import to_networkx_from_rec
+from django.shortcuts import render
+from appNichoAnu.models import *
+from appNichoAnu.modules.to_networkx1_6 import to_networkx_from_rec
 
 from UCSD_IAB_Usefuls.Time.timezone1 import get_tzone
 
-from Graph_Packages.Graph_Draw.DrawNetworkX_simple1_8 \
+from Graph_Packages.Graph_Draw.DrawNetworkX_simple1_9 \
     import DrawNetworkX_simple
 from FileDirPath.mkdir_on_absent import mkdir_on_absent
 from FileDirPath.File_Path1 import rs_filepath_info
@@ -152,23 +153,26 @@ def node_vis_id_info(request, node_vis_id,
                        "hheight" : hheight,
                        "offx"    : offx,
                        "offy"    : int(offy + hheight*0.5) }
-    
-    
-    
-       
-    contxt = RequestContext(request, { "node"        : node,
-                                       "node_form"   : node_form,
-                                       "image_url"   : image_url,
-                                       "nodes_drawn" : nodes_drawn,
-                                       "zoom_in_param"     : zoom_in_param,                                       
-                                       "zoom_out_param"    : zoom_out_param,
-                                       "shift_left_param"  : shift_left_param,
-                                       "shift_right_param" : shift_right_param,
-                                       "shift_up_param"    : shift_up_param,
-                                       "shift_down_param"  : shift_down_param,                                       
-                                        })
-    templt = loader.get_template("appNichoAnu/map_Anurag_node_info4.html")
-    
-    return HttpResponse(templt.render(contxt)) 
+
+
+
+
+    contxt = { "node"        : node,
+               "node_form"   : node_form,
+               "image_url"   : image_url,
+               "nodes_drawn" : nodes_drawn,
+               "zoom_in_param"     : zoom_in_param,
+               "zoom_out_param"    : zoom_out_param,
+               "shift_left_param"  : shift_left_param,
+               "shift_right_param" : shift_right_param,
+               "shift_up_param"    : shift_up_param,
+               "shift_down_param"  : shift_down_param,
+               }
+
+    return render(request,
+                  "appNichoAnu/map_Anurag_node_info4.html",
+                  contxt)
+
+
     
 

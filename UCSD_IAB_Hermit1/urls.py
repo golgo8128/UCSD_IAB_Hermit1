@@ -21,8 +21,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 
-    path(r'^app/NichoAnu/',
+
+    path(r'app/NichoAnu/',
          include("appNichoAnu.urls", namespace="appNichoAnu")),
+
+    path(r'login/', include("AccAuth_TZ.urls", namespace="AccAuth_TZ")),
 
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL,

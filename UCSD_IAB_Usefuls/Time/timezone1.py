@@ -17,7 +17,7 @@ except django.core.exceptions.ImproperlyConfigured:
 
 def get_tzone(django_user):
     
-    if django_user.is_anonymous():
+    if django_user.is_anonymous:
         return pytz.timezone(TIME_ZONE_THISSERVER)
     else:
         return Hermit_User_TZ.objects.get(user = django_user).timezone_obj.tz()

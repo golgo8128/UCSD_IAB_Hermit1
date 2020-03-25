@@ -17,6 +17,7 @@ from django.template import RequestContext, loader
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect #, JsonResponse
 from django.urls import reverse
+from django.shortcuts import render
 
 from ipware.ip import get_ip
 
@@ -44,17 +45,18 @@ def index(request):
         ip_log = TimeStamp_HashFile(client_ip_log_file)
         ip_log.stamp(ipaddr)
 
-    contxt = RequestContext(request, { "NichoNode" : NichoNode,
-                                       "NichoEdge" : NichoEdge,
-                                       "settings"  : settings,
-                                       "apache_user" : getpass.getuser(),
-        "acount_minus_wk3": len(ip_log.get_keys_timerange(timedelta(days = 21), timedelta(days = 14))),
-        "acount_minus_wk2": len(ip_log.get_keys_timerange(timedelta(days = 14), timedelta(days =  7))),
-        "acount_minus_wk1": len(ip_log.get_keys_timerange(timedelta(days =  7), timedelta(days =  0))),
-         }) # {{ message|safe }}
-    templt = loader.get_template("appNichoAnu/map_Anurag1_3.html")
-    
-    return HttpResponse(templt.render(contxt)) 
+    contxt = { "NichoNode"   : NichoNode,
+               "NichoEdge"   : NichoEdge,
+               "settings"    : settings,
+               "apache_user" : getpass.getuser(),
+               "acount_minus_wk3": len(ip_log.get_keys_timerange(timedelta(days = 21), timedelta(days = 14))),
+               "acount_minus_wk2": len(ip_log.get_keys_timerange(timedelta(days = 14), timedelta(days =  7))),
+               "acount_minus_wk1": len(ip_log.get_keys_timerange(timedelta(days =  7), timedelta(days =  0))),
+            } # {{ message|safe }}
+
+    return render(request,
+                  "appNichoAnu/map_Anurag1_3.html",
+                  contxt)
 
 
 def pub_db_tools(request):

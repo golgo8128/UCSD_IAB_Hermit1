@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # Intended to be executed (imported) from ./manage.py shell
-# then do "from appNichoAnu.utilities.data_import1_1 import *"
+# then do "from appNichoAnu.utilities.data_import1_2 import *"
 # or
 # echo "from appNichoAnu.utilities.data_import1_2 import *" | ./manage.py shell
 
@@ -19,11 +19,13 @@ from appNichoAnu.models import *
 # object.id may not be preserved.
 
 node_file = RSFPath("TRUNK",
-                    "cWorks", "Project", "Nephrology", "MetabMap_Nicholson",
+                    "cWorks", "Students",
+                    "IkarashiM", "MetabMap_Nicholson",
                     "node_Anu_out1_4.tsv")
 
 edge_file = RSFPath("TRUNK",
-                    "cWorks", "Project", "Nephrology", "MetabMap_Nicholson",
+                    "cWorks", "Students",
+                    "IkarashiM", "MetabMap_Nicholson",
                     "edge_Anu_out1_4.tsv")
 
 def str_wo_space(ivar):

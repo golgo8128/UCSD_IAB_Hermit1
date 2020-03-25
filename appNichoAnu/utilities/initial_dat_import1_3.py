@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+# First, create a user Anurag.
 # Intended to be executed (imported) from ./manage.py shell
 # then do "from appNichoAnu.utilities.initial_dat_import1_3 import *"
 # or
@@ -12,27 +13,33 @@ from datetime import datetime
 from FileDirPath.rsFilePath1 import RSFPath
 
 from django.contrib.auth.models import User
-from appNichoAnu.models import *
+from django.db import IntegrityError
+from ..models import *
 
 node_file = RSFPath("TRUNK",
-                    "cWorks", "Project",
-                    "Nephrology", "MetabMap_Nicholson", 
+                    "cWorks", "Students",
+                    "IkarashiM", "MetabMap_Nicholson",
                     "NicholsonMap_nodes_Anurag1_3_7.tsv")
 
 edge_file = RSFPath("TRUNK",
-                    "cWorks", "Project",
-                    "Nephrology", "MetabMap_Nicholson",
+                    "cWorks", "Students",
+                    "IkarashiM", "MetabMap_Nicholson",
                     "NicholsonMap_edges_Anurag1_3_7.tsv")
 
 node_coord_file = RSFPath("TRUNK",
-                          "cWorks", "Project",
-                          "Nephrology", "MetabMap_Nicholson",
+                          "cWorks", "Students",
+                          "IkarashiM", "MetabMap_Nicholson",
                           "NicholsonMap_nodescoord_Anurag1_1.tsv")
 
 edge_validcheckres_file = RSFPath("TRUNK",
-                                  "cWorks", "Project",
-                                  "Nephrology", "MetabMap_Nicholson",
+                                  "cWorks", "Students",
+                                  "IkarashiM", "MetabMap_Nicholson",
                                   "NicholsonMap_edges_match_result1_3.tsv")
+
+nodeinfo_coord_merge_ofile = RSFPath(
+    "DESKTOP",
+    "nichoanu_nodeinfo_coord_merged1_1.tsv")
+
 
 node_dfrm = pd.io.parsers.read_table(node_file,
                                      header = 0, sep = "\t")
@@ -57,6 +64,9 @@ nodeinfo_coord_merge = pd.merge(node_dfrm, node_coord_dfrm,
 edgeinfo_vcheck_merge = pd.merge(edge_dfrm, edge_vcheck_dfrm,
                                  on = ["IMM ID source",
                                        "IMM ID target"], how = "left")
+
+
+nodeinfo_coord_merge.to_csv(nodeinfo_coord_merge_ofile, sep = "\t")
 
 # print(node_dfrm.iloc[0:10,:])
 # print(node_coord_dfrm.iloc[0:10,:])
@@ -112,9 +122,13 @@ for rownam in nodeinfo_coord_merge.index:
         new_nodeobj.pos_x_on_map = int(float(nodeinfo_coord_merge.loc[ rownam, "position_x"])*100)/100.0
     if simple_nonempty_check(nodeinfo_coord_merge.loc[ rownam, "position_y"]):
         new_nodeobj.pos_y_on_map = int(float(nodeinfo_coord_merge.loc[ rownam, "position_y"])*100)/100.0
-    
-    new_nodeobj.save()
 
+    try:
+        new_nodeobj.save()
+    except IntegrityError as err:
+        print("##### Node information ntegrity error #####")
+        print(nodeinfo_coord_merge.loc[ rownam, :])
+        print()
 
 for rownam in edgeinfo_vcheck_merge.index:
 

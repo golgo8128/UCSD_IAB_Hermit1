@@ -77,7 +77,7 @@ def node_vis_id_info(request, node_vis_id,
         node_form = NichoNode_Form(instance = node)
     
     grf = to_networkx_from_rec()
-    image_file = os.path.join(settings.UCSD_IMM_WORKDIR,
+    image_file = os.path.join(settings.UCSD_IAB_WORKDIR,
                               "Media", "appNichoAnu", "Images",
                               "nodes", "%s.png" % node_vis_id)
     mkdir_on_absent(rs_filepath_info(image_file)[ "foldername" ])

@@ -17,6 +17,7 @@ import pickle # http://docs.python.jp/3/library/pickle.html
 
 from django.conf import settings
 
+# import networkx as nx
 from Graph_Packages.NetworkX.rsNetworkX_DiGraph1 import rsNetworkX_DiGraph
 from Graph_Packages.Graph_Draw.DrawNetworkX_simple1_7 \
     import DrawNetworkX_simple, KEY_NODE_COORD_XY, \
@@ -104,37 +105,41 @@ def to_networkx():
                 dir_fwd = False
     
         if dir_fwd:
-            grf1.edge[str(node_src)][str(node_tgt)]["dir_fwd"] = dir_fwd
+            grf1.edges[str(node_src), str(node_tgt)][ "dir_fwd" ] = dir_fwd
+            # nx.set_edge_attributes(grf1,
+            #     { (str(node_src), str(node_tgt)) : { "dir_fwd" : dir_fwd } })
         if dir_rev:
-            grf1.edge[str(node_src)][str(node_tgt)]["dir_rev"] = dir_rev    
+            grf1.edges[str(node_src), str(node_tgt)][ "dir_rev" ] = dir_rev
+            # nx.set_edge_attributes(grf1,
+            #     { (str(node_src), str(node_tgt)) : { "dir_rev" : dir_rev } })
+
+        # grf1.edge[str(node_src)][str(node_tgt)]["dir_rev"] = dir_rev
         
-        grf1.edge[str(node_src)][str(node_tgt)]["dir_rev"] = dir_rev 
-        
-        grf1.edge[ str(node_src) ][ str(node_tgt) ][ KEY_EDGE_RELAY_POSS ] = relay_poss
+        grf1.edges[ str(node_src), str(node_tgt) ][ KEY_EDGE_RELAY_POSS ] = relay_poss
 
         
         # print(edge.id, edge.timestamp,
         #       node_src, node_tgt, grf1.edge[ str(node_src) ][ str(node_tgt) ][ KEY_EDGE_RELAY_POSS ])
         
         if len(edge.get_ecnums_strs()):
-            if "ecnum_set" not in grf1.edge[str(node_src)][str(node_tgt)]:
-                grf1.edge[str(node_src)][str(node_tgt)]["ecnum_set"] = set()
-            grf1.edge[str(node_src)][str(node_tgt)]["ecnum_set"] |= set(edge.get_ecnums_strs())
+            if "ecnum_set" not in grf1.edges[str(node_src), str(node_tgt)]:
+                grf1.edges[str(node_src), str(node_tgt)][ "ecnum_set" ] = set()
+            grf1.edges[str(node_src), str(node_tgt)][ "ecnum_set" ] |= set(edge.get_ecnums_strs())
                 
                     
     for node_src_str, node_tgt_str in grf1.edges():
-        if "ecnum_set" in grf1.edge[ node_src_str ][ node_tgt_str ]:
-            grf1.edge[ node_src_str ][ node_tgt_str ][ KEY_EDGE_LABEL_LIST ] \
-                = sorted(list(grf1.edge[ node_src_str ][ node_tgt_str ][ "ecnum_set" ]))
+        if "ecnum_set" in grf1.edges[ node_src_str, node_tgt_str ]:
+            grf1.edges[ node_src_str, node_tgt_str ][ KEY_EDGE_LABEL_LIST ] \
+                = sorted(list(grf1.edges[ node_src_str, node_tgt_str ][ "ecnum_set" ]))
         
         dir_str_left = ""
-        if grf1.edge[ node_src_str ][ node_tgt_str ].get("dir_rev", False):
+        if grf1.edges[ node_src_str, node_tgt_str ].get("dir_rev", False):
             dir_str_left = "<"
         dir_str_right = ""
-        if grf1.edge[ node_src_str ][ node_tgt_str ].get("dir_fwd", False):
+        if grf1.edges[ node_src_str, node_tgt_str ].get("dir_fwd", False):
             dir_str_right = ">"    
         dir_str = dir_str_left + "-" + dir_str_right
-        grf1.edge[ node_src_str ][ node_tgt_str ][ KEY_EDGE_DIRECTION ] = dir_str
+        grf1.edges[ node_src_str, node_tgt_str ][ KEY_EDGE_DIRECTION ] = dir_str
 
  
 #     dg.add_edge("Node A", "Node C",

@@ -18,15 +18,15 @@ import pickle # http://docs.python.jp/3/library/pickle.html
 from django.conf import settings
 
 # import networkx as nx
-from Graph_Packages.NetworkX.rsNetworkX_DiGraph1 import rsNetworkX_DiGraph
-from Graph_Packages.Graph_Draw.DrawNetworkX_simple1_7 \
-    import DrawNetworkX_simple, KEY_NODE_COORD_XY, \
+from rs_Python_Pack3_copied.Graph_Packages.NetworkX.rsNetworkX_DiGraph1 import rsNetworkX_DiGraph
+from rs_Python_Pack3_copied.Graph_Packages.Graph_Draw.DrawNetworkX_simple1_9 \
+    import KEY_NODE_COORD_XY, \
         KEY_DISP_NODE_LABEL, KEY_NODE_LABEL_OFFSET_XY, \
         KEY_EDGE_LABEL_LIST, KEY_EDGE_DIRECTION, KEY_EDGE_RELAY_POSS
 from appNichoAnu.models import *
 
-from FileDirPath.mkdir_on_absent import mkdir_on_absent
-from FileDirPath.File_Path1 import rs_filepath_info
+from rs_Python_Pack3_copied.General_Packages.FileDirPath.mkdir_on_absent import mkdir_on_absent
+from rs_Python_Pack3_copied.General_Packages.FileDirPath.File_Path1 import rs_filepath_info
 
 networkx_pkl_file = os.path.join(settings.UCSD_IAB_WORKDIR,
                              "Media", "appNichoAnu", "Network",

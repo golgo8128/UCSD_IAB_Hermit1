@@ -20,10 +20,10 @@ from appNichoAnu.modules.to_networkx1_6 import to_networkx_from_rec
 
 from UCSD_IAB_Usefuls.Time.timezone1 import get_tzone
 
-from Graph_Packages.Graph_Draw.DrawNetworkX_simple1_9 \
+from rs_Python_Pack3_copied.Graph_Packages.Graph_Draw.DrawNetworkX_simple1_9 \
     import DrawNetworkX_simple
-from FileDirPath.mkdir_on_absent import mkdir_on_absent
-from FileDirPath.File_Path1 import rs_filepath_info
+from rs_Python_Pack3_copied.General_Packages.FileDirPath.mkdir_on_absent import mkdir_on_absent
+from rs_Python_Pack3_copied.General_Packages.FileDirPath.File_Path1 import rs_filepath_info
 
 HWIDTH_DEFAULT  = 5
 HHEIGHT_DEFAULT = 5

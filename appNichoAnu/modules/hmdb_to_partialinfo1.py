@@ -2,9 +2,9 @@
 import os
 import pandas as pd
 from django.conf import settings
-from FileDirPath.Pickle_Manager4_2 import Pickle_Manager
-from FileDirPath.mkdir_on_absent import mkdir_on_absent
-from FileDirPath.File_Path1 import rs_filepath_info
+from rs_Python_Pack3_copied.General_Packages.FileDirPath.Pickle_Manager4_3 import Pickle_Manager
+from rs_Python_Pack3_copied.General_Packages.FileDirPath.mkdir_on_absent import mkdir_on_absent
+from rs_Python_Pack3_copied.General_Packages.FileDirPath.File_Path1 import rs_filepath_info
 
 hmdb_tsv_file = os.path.join(settings.STATICFILES_DIRS[0],
                              "appNichoAnu", "PubData",

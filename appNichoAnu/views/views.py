@@ -26,10 +26,10 @@ from appNichoAnu.modules.to_networkx1_6 import to_networkx
 
 from UCSD_IAB_Usefuls.Time.timezone1 import get_tzone
 
-from FileDirPath.mkdir_on_absent import mkdir_on_absent
-from FileDirPath.File_Path1 import rs_filepath_info
+from rs_Python_Pack3_copied.General_Packages.FileDirPath.mkdir_on_absent import mkdir_on_absent
+from rs_Python_Pack3_copied.General_Packages.FileDirPath.File_Path1 import rs_filepath_info
 
-from Usefuls.TimeStamp_HashFile1_1 import TimeStamp_HashFile
+from rs_Python_Pack3_copied.General_Packages.Usefuls.TimeStamp_HashFile1_1 import TimeStamp_HashFile
 
 client_ip_log_file = os.path.join(settings.UCSD_IAB_WORKDIR,
                                   "Media", "appNichoAnu", "Log",

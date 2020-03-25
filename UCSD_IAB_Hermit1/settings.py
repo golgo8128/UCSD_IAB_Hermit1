@@ -119,8 +119,14 @@ WSGI_APPLICATION = 'UCSD_IAB_Hermit1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(UCSD_IAB_DB_DIR, 'db.sqlite3'),
-    }
+        'NAME': os.path.join(UCSD_IAB_DB_DIR, 'db.sqlite3'), # UCSD IAB Hermit1 System #
+    },
+
+    "nichoanu": {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(UCSD_IAB_DB_DIR, 'db_nichoanu.sqlite3'), # UCSD IAB Hermit1 System #
+    },
+
 }
 
 

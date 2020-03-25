@@ -61,49 +61,43 @@ def index(request):
 
 def pub_db_tools(request):
 
-    contxt = RequestContext(request, { })
-    templt = loader.get_template("appNichoAnu/pub_db_tools1.html")
-    
-    return HttpResponse(templt.render(contxt))     
+    return render(request,
+                  "appNichoAnu/pub_db_tools1.html",
+                  {})
 
 def survey(request):
 
-    contxt = RequestContext(request, { })
-    templt = loader.get_template("appNichoAnu/survey1.html")
-    
-    return HttpResponse(templt.render(contxt))    
+    return render(request,
+                  "appNichoAnu/survey1.html",
+                  {})
 
 def member(request):
 
-    contxt = RequestContext(request, { })
-    templt = loader.get_template("appNichoAnu/nichoanu_member1.html")
-    
-    return HttpResponse(templt.render(contxt))     
-    
+    return render(request,
+                  "appNichoAnu/nichoanu_member1.html",
+                  {})
+
 def material_src(request):
-    
-    contxt = RequestContext(request, { })
-    templt = loader.get_template("appNichoAnu/material_src1.html")
-    
-    return HttpResponse(templt.render(contxt))    
+
+    return render(request,
+                  "appNichoAnu/material_src1.html",
+                  {})
     
 def history(request):
 
-    contxt = RequestContext(request, { })
-    templt = loader.get_template("appNichoAnu/history_Anurag1.html")
-    
-    return HttpResponse(templt.render(contxt))  
+    return render(request,
+                  "appNichoAnu/history_Anurag1.html",
+                  {})
 
 def work_record(request):
 
-    contxt = RequestContext(request, { })
-    templt = loader.get_template("appNichoAnu/work_record_Golgo1.html")
-    
-    return HttpResponse(templt.render(contxt)) 
+    return render(request,
+                  "appNichoAnu/work_record_Golgo1.html",
+                  {})
 
 def blog(request):
 
-    contxt = RequestContext(request, { })
-    templt = loader.get_template("appNichoAnu/blog1.html")
-    
-    return HttpResponse(templt.render(contxt))   
+    return render(request,
+                  "appNichoAnu/blog1.html",
+                  {})
+

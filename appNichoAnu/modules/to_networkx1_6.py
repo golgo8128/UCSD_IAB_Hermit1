@@ -27,7 +27,7 @@ from appNichoAnu.models import *
 from FileDirPath.mkdir_on_absent import mkdir_on_absent
 from FileDirPath.File_Path1 import rs_filepath_info
 
-networkx_pkl_file = os.path.join(settings.UCSD_IMM_WORKDIR,
+networkx_pkl_file = os.path.join(settings.UCSD_IAB_WORKDIR,
                              "Media", "appNichoAnu", "Network",
                              "NichoAnu_networkx_intermed1_2.pkl")
 mkdir_on_absent(rs_filepath_info(networkx_pkl_file)[ "foldername" ])

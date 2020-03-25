@@ -26,7 +26,7 @@ def generate_hmdb_partialinfo_dfrm(ihmdb_tsv_file):
     
     return odfrm
 
-pkl_file = os.path.join(settings.UCSD_IMM_WORKDIR,
+pkl_file = os.path.join(settings.UCSD_IAB_WORKDIR,
                         "InterMed", "PubData",
                         "hmdb3_3_partial_dfrm.pkl")
 mkdir_on_absent(rs_filepath_info(pkl_file)[ "foldername" ])

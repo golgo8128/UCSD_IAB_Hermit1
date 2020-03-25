@@ -13,11 +13,11 @@ from django.conf import settings
 from django.template import RequestContext, loader
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect #, JsonResponse
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from .models import *
 from .modules.to_networkx1_6 import to_networkx_from_rec
 
-from UCSD_IMM_Usefuls.Time.timezone1 import get_tzone
+from UCSD_IAB_Usefuls.Time.timezone1 import get_tzone
 
 from Graph_Packages.Graph_Draw.DrawNetworkX_simple1_8 \
     import DrawNetworkX_simple

@@ -15,7 +15,8 @@ class NichoNode(models.Model):
     but different node_vis_ids, which are intended for two citric acids
     in different pathway map locations """ 
     
-    user         = models.ForeignKey(User, verbose_name = "User")
+    user         = models.ForeignKey(User, verbose_name = "User",
+                                     on_delete = models.CASCADE)
     timestamp    = models.DateTimeField("Modified time")
         
     node_id      = models.CharField(verbose_name = "Node ID", max_length = 25)
@@ -195,12 +196,17 @@ class NichoEdge_categorizationI(models.Model):
 
 class NichoEdge(models.Model):
     
-    user        = models.ForeignKey(User, verbose_name = "User")
+    user        = models.ForeignKey(User, verbose_name = "User",
+                                    on_delete = models.CASCADE,)
     timestamp   = models.DateTimeField("Modified time")
     edge_id     = models.CharField(max_length = 200, null = True, blank = True)
-    node_src    = models.ForeignKey(NichoNode, related_name = "node_src",
+    node_src    = models.ForeignKey(NichoNode,
+                                    on_delete = models.CASCADE,
+                                    related_name = "node_src",
                                     verbose_name = "Source node")
-    node_tgt    = models.ForeignKey(NichoNode, related_name = "node_tgt",
+    node_tgt    = models.ForeignKey(NichoNode,
+                                    on_delete = models.CASCADE,
+                                    related_name = "node_tgt",
                                     verbose_name = "Target node")
     is_directed = models.BooleanField(verbose_name = "Is directed?")
     ecnums      = models.CharField(default = "",
@@ -214,9 +220,11 @@ class NichoEdge(models.Model):
                                              blank = True)
     
     classification = models.ForeignKey(NichoEdge_classification,
+                                       on_delete = models.SET_NULL,
                                        null = True, blank = True,
                                        verbose_name = "Classification") 
     categorization_I = models.ForeignKey(NichoEdge_categorizationI,
+                                         on_delete=models.SET_NULL,
                                          null = True, blank = True,
                                          verbose_name = "Categorization I") 
  
@@ -409,7 +417,9 @@ class NichoNode_obsolete(models.Model):
     but different node_vis_ids, which are intended for two citric acids
     in different pathway map locations """ 
     
-    user           = models.ForeignKey(User, verbose_name = "User")
+    user           = models.ForeignKey(User,
+                                       on_delete=models.CASCADE,
+                                       verbose_name = "User")
     timestamp      = models.DateTimeField("Modified time")
     timestamp_obso = models.DateTimeField("Became obsolete on") 
         
@@ -467,7 +477,9 @@ class NichoNode_obsolete(models.Model):
 
 class NichoEdge_obsolete(models.Model):
     
-    user           = models.ForeignKey(User, verbose_name = "User")
+    user           = models.ForeignKey(User,
+                                       on_delete=models.CASCADE,
+                                       verbose_name = "User")
     timestamp      = models.DateTimeField("Modified time")
     timestamp_obso = models.DateTimeField("Became obsolete on") 
     edge_id     = models.CharField(max_length = 200, null = True, blank = True)
@@ -487,9 +499,11 @@ class NichoEdge_obsolete(models.Model):
                                              blank = True)
     
     classification = models.ForeignKey(NichoEdge_classification,
+                                       on_delete=models.SET_NULL,
                                        null = True, blank = True,
                                        verbose_name = "Classification") 
     categorization_I = models.ForeignKey(NichoEdge_categorizationI,
+                                         on_delete=models.SET_NULL,
                                          null = True, blank = True,
                                          verbose_name = "Categorization I") 
  

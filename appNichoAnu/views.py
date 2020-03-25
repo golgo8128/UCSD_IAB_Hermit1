@@ -16,21 +16,21 @@ from django.conf import settings
 from django.template import RequestContext, loader
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect #, JsonResponse
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from ipware.ip import get_ip
 
 from .models import *
 from .modules.to_networkx1_6 import to_networkx
 
-from UCSD_IMM_Usefuls.Time.timezone1 import get_tzone
+from UCSD_IAB_Usefuls.Time.timezone1 import get_tzone
 
 from FileDirPath.mkdir_on_absent import mkdir_on_absent
 from FileDirPath.File_Path1 import rs_filepath_info
 
 from Usefuls.TimeStamp_HashFile1_1 import TimeStamp_HashFile
 
-client_ip_log_file = os.path.join(settings.UCSD_IMM_WORKDIR,
+client_ip_log_file = os.path.join(settings.UCSD_IAB_WORKDIR,
                                   "Media", "appNichoAnu", "Log",
                                   "client_ip_log1.pkl")
 

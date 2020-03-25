@@ -4,6 +4,8 @@ from . import views, views_node_info1_4, views_edge_info1_2,  \
     views_add_node1_1, views_add_edge1_1, \
     views_del_node1_1, views_del_edge1_1
 
+app_name = "appNichoAnu"
+
 urlpatterns = [
 
     url(r'^node_info/node_vis_id=(?P<node_vis_id>[^@\s]+)$',

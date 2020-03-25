@@ -25,9 +25,11 @@ class Hermit_Timezone(models.Model):
     
 class Hermit_User_TZ(models.Model):
     user = models.OneToOneField(User,
+                                on_delete=models.CASCADE,
                                 verbose_name = "User")
     
     timezone_obj = models.ForeignKey(Hermit_Timezone,
+                                     on_delete=models.CASCADE,
                                      verbose_name = "Timezone")
     
     def __str__(self):

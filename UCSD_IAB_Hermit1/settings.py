@@ -38,6 +38,8 @@ UCSD_IAB_DB_DIR = os.path.join(BASE_DIR, "UCSD_IAB_DB")
 
 STATIC_URL = '/UCSD_IAB_Static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, "UCSD_IAB_Static")
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "UCSD_IAB_Static"), # "S" upper case
 ]
@@ -154,6 +156,4 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
-MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+

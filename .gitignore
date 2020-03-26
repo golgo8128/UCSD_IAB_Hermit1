@@ -6,6 +6,7 @@
 /RemoteSystemsTempFiles/
 /UCSD_IAB_DB/
 /UCSD_IAB_Workspace/Media/
+/UCSD_IAB_Workspace/InterMed/
 /*/migrations
 *.pyc
 *.DS_Store*

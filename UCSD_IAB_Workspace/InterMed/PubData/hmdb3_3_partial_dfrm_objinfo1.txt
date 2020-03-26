@@ -1,6 +1,0 @@
-[ versions ]
-PickMan version	4.2.2
-Ver major	0.54
-
-[ sfiles ]
-/home/crybed2017/crybed2017.pythonanywhere.com/UCSD_IAB_Static/appNichoAnu/PubData/hmdb3_3_dfrm1.tsv

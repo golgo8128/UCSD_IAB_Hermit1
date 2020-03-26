@@ -25,7 +25,7 @@ SECRET_KEY = 'c$@ydho2yxs-!mqmcko=s^8gng)tj2@e@!6=*k!q-gbu1xp#aa'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['crybed2017.pythonanywhere.com']
+ALLOWED_HOSTS = [ '127.0.0.1', 'crybed2017.pythonanywhere.com' ]
 
 
 ### UCSD IAB Hermit1 System ###
@@ -38,7 +38,7 @@ UCSD_IAB_DB_DIR = os.path.join(BASE_DIR, "UCSD_IAB_DB")
 
 STATIC_URL = '/UCSD_IAB_Static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "UCSD_IAB_Static")
+# STATIC_ROOT = os.path.join(BASE_DIR, "UCSD_IAB_Static")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "UCSD_IAB_Static"), # "S" upper case

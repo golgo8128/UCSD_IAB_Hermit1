@@ -148,9 +148,9 @@ def to_networkx():
     for node in NichoNode.objects.all():
         if not grf1.has_node(str(node)):
             grf1.add_node(str(node))
-        grf1.node[str(node)][ KEY_DISP_NODE_LABEL ] = node.annotation
-        grf1.node[str(node)][ KEY_NODE_COORD_XY ] = node.pos_x_on_map, node.pos_y_on_map
-        grf1.node[str(node)][ KEY_NODE_LABEL_OFFSET_XY ] \
+        grf1.nodes[str(node)][ KEY_DISP_NODE_LABEL ] = node.annotation
+        grf1.nodes[str(node)][ KEY_NODE_COORD_XY ] = node.pos_x_on_map, node.pos_y_on_map
+        grf1.nodes[str(node)][ KEY_NODE_LABEL_OFFSET_XY ] \
             = node.label_offset100_x, node.label_offset100_y
         
     return grf1

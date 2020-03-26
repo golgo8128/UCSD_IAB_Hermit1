@@ -46,8 +46,8 @@ class DrawNetworkX_simple:
         nodes_wr = {}
         
         for node in self.igrf.nodes():
-            if KEY_NODE_COORD_XY in self.igrf.node[ node ]:
-                pos_x, pos_y = self.igrf.node[ node ][ KEY_NODE_COORD_XY ]
+            if KEY_NODE_COORD_XY in self.igrf.nodes[ node ]:
+                pos_x, pos_y = self.igrf.nodes[ node ][ KEY_NODE_COORD_XY ]
                 if (pos_xy_within_range(pos_x, pos_y, range_x, range_y)):
                     nodes_wr[ node ] = True
 
@@ -59,10 +59,10 @@ class DrawNetworkX_simple:
                 
         for iedge in self.igrf.edges(data = True):
             node1, node2, eattr_h = iedge
-            if (KEY_NODE_COORD_XY in self.igrf.node[ node1 ] and
-                KEY_NODE_COORD_XY in self.igrf.node[ node2 ]):
-                pos_x1, pos_y1 = self.igrf.node[ node1 ][ KEY_NODE_COORD_XY ]
-                pos_x2, pos_y2 = self.igrf.node[ node2 ][ KEY_NODE_COORD_XY ]                
+            if (KEY_NODE_COORD_XY in self.igrf.nodes[ node1 ] and
+                KEY_NODE_COORD_XY in self.igrf.nodes[ node2 ]):
+                pos_x1, pos_y1 = self.igrf.nodes[ node1 ][ KEY_NODE_COORD_XY ]
+                pos_x2, pos_y2 = self.igrf.nodes[ node2 ][ KEY_NODE_COORD_XY ]
                 poss_all = [(pos_x1, pos_y1)] + \
                     eattr_h.get(KEY_EDGE_RELAY_POSS, []) + \
                     [(pos_x2, pos_y2)]
@@ -109,7 +109,7 @@ class DrawNetworkX_simple:
                                       replace=False)
                     
         for node in nodes_in_range:       
-            pos_x, pos_y = self.igrf.node[ node ][ KEY_NODE_COORD_XY ]
+            pos_x, pos_y = self.igrf.nodes[ node ][ KEY_NODE_COORD_XY ]
             rate_pos_x = get_rate_pos(range_x, pos_x)
             rate_pos_y = get_rate_pos(range_y, pos_y)
             
@@ -120,13 +120,13 @@ class DrawNetworkX_simple:
             if (pos_xy_within_range(pos_x, pos_y, range_x, range_y)):
                 self.ax.plot(pos_x, pos_y, 'o', color = node_color, markersize = markersize)
                 
-                if KEY_DISP_NODE_LABEL in self.igrf.node[ node ]:
-                    node_label = self.igrf.node[ node ][ KEY_DISP_NODE_LABEL ]
+                if KEY_DISP_NODE_LABEL in self.igrf.nodes[ node ]:
+                    node_label = self.igrf.nodes[ node ][ KEY_DISP_NODE_LABEL ]
                 else:
                     node_label = node
                 
-                if KEY_NODE_LABEL_OFFSET_XY in self.igrf.node[ node ]:
-                    offset100_x, offset100_y = self.igrf.node[ node ][ KEY_NODE_LABEL_OFFSET_XY ]
+                if KEY_NODE_LABEL_OFFSET_XY in self.igrf.nodes[ node ]:
+                    offset100_x, offset100_y = self.igrf.nodes[ node ][ KEY_NODE_LABEL_OFFSET_XY ]
                     off_x = (range_x[1] - range_x[0])*offset100_x / 100
                     off_y = (range_y[1] - range_y[0])*offset100_y / 100
                 else:
@@ -297,10 +297,10 @@ C:\WinAppl\Anaconda3\lib\site-packages\matplotlib\patches.py:3150: RuntimeWarnin
                                 
         for iedge in self.igrf.edges(data = True):
             node1, node2, eattr_h = iedge
-            if (KEY_NODE_COORD_XY in self.igrf.node[ node1 ] and
-                KEY_NODE_COORD_XY in self.igrf.node[ node2 ]):
-                pos_x1, pos_y1 = self.igrf.node[ node1 ][ KEY_NODE_COORD_XY ]
-                pos_x2, pos_y2 = self.igrf.node[ node2 ][ KEY_NODE_COORD_XY ]            
+            if (KEY_NODE_COORD_XY in self.igrf.nodes[ node1 ] and
+                KEY_NODE_COORD_XY in self.igrf.nodes[ node2 ]):
+                pos_x1, pos_y1 = self.igrf.nodes[ node1 ][ KEY_NODE_COORD_XY ]
+                pos_x2, pos_y2 = self.igrf.nodes[ node2 ][ KEY_NODE_COORD_XY ]
                 edir = eattr_h.get(KEY_EDGE_DIRECTION, "->")
                 
                 poss_all = [(pos_x1, pos_y1)] + \
@@ -342,12 +342,12 @@ C:\WinAppl\Anaconda3\lib\site-packages\matplotlib\patches.py:3150: RuntimeWarnin
         max_abs_dist_x = 0
         max_abs_dist_y = 0
         
-        if KEY_NODE_COORD_XY in self.igrf.node[ node_central ]:
+        if KEY_NODE_COORD_XY in self.igrf.nodes[ node_central ]:
             central_pos_x, central_pos_y = \
-                self.igrf.node[ node_central ][ KEY_NODE_COORD_XY ]    
+                self.igrf.nodes[ node_central ][ KEY_NODE_COORD_XY ]
             for inode in self.igrf.nodes():
-                if inode != node_central and KEY_NODE_COORD_XY in self.igrf.node[ inode ]:
-                    node_pos_x, node_pos_y = self.igrf.node[ inode ][ KEY_NODE_COORD_XY ]
+                if inode != node_central and KEY_NODE_COORD_XY in self.igrf.nodes[ inode ]:
+                    node_pos_x, node_pos_y = self.igrf.nodes[ inode ][ KEY_NODE_COORD_XY ]
                     if (cmin is None or
                         cmin > (node_pos_x - central_pos_x)**2 + (node_pos_y - central_pos_y)**2):
                         cmin = (node_pos_x - central_pos_x)**2 + (node_pos_y - central_pos_y)**2
@@ -374,19 +374,19 @@ C:\WinAppl\Anaconda3\lib\site-packages\matplotlib\patches.py:3150: RuntimeWarnin
         max_abs_dist_x = 0
         max_abs_dist_y = 0
                 
-        if (KEY_NODE_COORD_XY in self.igrf.node[ node_central1 ] and
-            KEY_NODE_COORD_XY in self.igrf.node[ node_central2 ]):
+        if (KEY_NODE_COORD_XY in self.igrf.nodes[ node_central1 ] and
+            KEY_NODE_COORD_XY in self.igrf.nodes[ node_central2 ]):
             
             central_pos_x = \
-                (self.igrf.node[ node_central1 ][ KEY_NODE_COORD_XY ][0] +
-                 self.igrf.node[ node_central2 ][ KEY_NODE_COORD_XY ][0]) / 2
+                (self.igrf.nodes[ node_central1 ][ KEY_NODE_COORD_XY ][0] +
+                 self.igrf.nodes[ node_central2 ][ KEY_NODE_COORD_XY ][0]) / 2
             central_pos_y = \
-                (self.igrf.node[ node_central1 ][ KEY_NODE_COORD_XY ][1] +
-                 self.igrf.node[ node_central2 ][ KEY_NODE_COORD_XY ][1]) / 2   
+                (self.igrf.nodes[ node_central1 ][ KEY_NODE_COORD_XY ][1] +
+                 self.igrf.nodes[ node_central2 ][ KEY_NODE_COORD_XY ][1]) / 2
                                   
             for inode in self.igrf.nodes():
-                if inode not in (node_central1, node_central2) and KEY_NODE_COORD_XY in self.igrf.node[ inode ]:
-                    node_pos_x, node_pos_y = self.igrf.node[ inode ][ KEY_NODE_COORD_XY ]
+                if inode not in (node_central1, node_central2) and KEY_NODE_COORD_XY in self.igrf.nodes[ inode ]:
+                    node_pos_x, node_pos_y = self.igrf.nodes[ inode ][ KEY_NODE_COORD_XY ]
                     if (cmin is None or
                         cmin > (node_pos_x - central_pos_x)**2 + (node_pos_y - central_pos_y)**2):
                         cmin = (node_pos_x - central_pos_x)**2 + (node_pos_y - central_pos_y)**2
@@ -412,11 +412,11 @@ C:\WinAppl\Anaconda3\lib\site-packages\matplotlib\patches.py:3150: RuntimeWarnin
                                figsize = (8, 7), dpi = None):
         # node_central has to have coordinate.
         
-        if node_central not in self.igrf.node:
+        if node_central not in self.igrf.nodes:
             return "Node %s not found" % node_central
-        if KEY_NODE_COORD_XY not in self.igrf.node[ node_central ]:
+        if KEY_NODE_COORD_XY not in self.igrf.nodes[ node_central ]:
             return "Coordinate for node %s not found" % node_central
-        node_central_pos_x, node_central_pos_y = self.igrf.node[ node_central ][ KEY_NODE_COORD_XY ]
+        node_central_pos_x, node_central_pos_y = self.igrf.nodes[ node_central ][ KEY_NODE_COORD_XY ]
         
         
         (cmin_node, cmax_node,
@@ -429,8 +429,8 @@ C:\WinAppl\Anaconda3\lib\site-packages\matplotlib\patches.py:3150: RuntimeWarnin
         if cmin_node is None or cmax_node is None:
             return "Single node %s in the map" %  node_central
         
-        cmin_node_pos_x, cmin_node_pos_y = self.igrf.node[ cmin_node ][ KEY_NODE_COORD_XY ]
-        cmax_node_pos_x, cmax_node_pos_y = self.igrf.node[ cmax_node ][ KEY_NODE_COORD_XY ]
+        cmin_node_pos_x, cmin_node_pos_y = self.igrf.nodes[ cmin_node ][ KEY_NODE_COORD_XY ]
+        cmax_node_pos_x, cmax_node_pos_y = self.igrf.nodes[ cmax_node ][ KEY_NODE_COORD_XY ]
         
         half_width_small  = abs(cmin_node_pos_x - node_central_pos_x)
         half_height_small = abs(cmin_node_pos_y - node_central_pos_y)
@@ -492,11 +492,11 @@ C:\WinAppl\Anaconda3\lib\site-packages\matplotlib\patches.py:3150: RuntimeWarnin
                                       figsize = (8, 7), dpi = None):
         # node_central has to have coordinate.
         
-        if node_central not in self.igrf.node:
+        if node_central not in self.igrf.nodes:
             return "Node %s not found" % node_central
-        if KEY_NODE_COORD_XY not in self.igrf.node[ node_central ]:
+        if KEY_NODE_COORD_XY not in self.igrf.nodes[ node_central ]:
             return "Coordinate for node %s not found" % node_central
-        node_central_pos_x, node_central_pos_y = self.igrf.node[ node_central ][ KEY_NODE_COORD_XY ]
+        node_central_pos_x, node_central_pos_y = self.igrf.nodes[ node_central ][ KEY_NODE_COORD_XY ]
         
         
         # Create a Figure object.
@@ -643,13 +643,13 @@ C:\WinAppl\Anaconda3\lib\site-packages\matplotlib\patches.py:3150: RuntimeWarnin
                 
         node_central1, node_central2 = edge_central[0:2]
         
-        if KEY_NODE_COORD_XY not in self.igrf.node[ node_central1 ]:
+        if KEY_NODE_COORD_XY not in self.igrf.nodes[ node_central1 ]:
             return "Coordinate for node %s not found" % node_central1
-        if KEY_NODE_COORD_XY not in self.igrf.node[ node_central2 ]:
+        if KEY_NODE_COORD_XY not in self.igrf.nodes[ node_central2 ]:
             return "Coordinate for node %s not found" % node_central2
         
-        node_central_pos_x1, node_central_pos_y1 = self.igrf.node[ node_central1 ][ KEY_NODE_COORD_XY ]
-        node_central_pos_x2, node_central_pos_y2 = self.igrf.node[ node_central2 ][ KEY_NODE_COORD_XY ]        
+        node_central_pos_x1, node_central_pos_y1 = self.igrf.nodes[ node_central1 ][ KEY_NODE_COORD_XY ]
+        node_central_pos_x2, node_central_pos_y2 = self.igrf.nodes[ node_central2 ][ KEY_NODE_COORD_XY ]
         
         rect_central_x      = (node_central_pos_x1 + node_central_pos_x2) / 2
         rect_central_y      = (node_central_pos_y1 + node_central_pos_y2) / 2
@@ -668,8 +668,8 @@ C:\WinAppl\Anaconda3\lib\site-packages\matplotlib\patches.py:3150: RuntimeWarnin
             cmin_node_pos_x, cmin_node_pos_y = rect_central_x_min, rect_central_y_min
             cmax_node_pos_x, cmax_node_pos_y = rect_central_x_max, rect_central_y_max
         else:
-            cmin_node_pos_x, cmin_node_pos_y = self.igrf.node[ cmin_node ][ KEY_NODE_COORD_XY ]
-            cmax_node_pos_x, cmax_node_pos_y = self.igrf.node[ cmax_node ][ KEY_NODE_COORD_XY ]
+            cmin_node_pos_x, cmin_node_pos_y = self.igrf.nodes[ cmin_node ][ KEY_NODE_COORD_XY ]
+            cmax_node_pos_x, cmax_node_pos_y = self.igrf.nodes[ cmax_node ][ KEY_NODE_COORD_XY ]
         
         half_width_small  = abs(cmin_node_pos_x - rect_central_x)
         if half_width_small < rect_central_width / 2:
